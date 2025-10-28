@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(SynthCore C)
+project(AxoCore C)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -13,6 +13,7 @@ include_directories("${CMAKE_SOURCE_DIR}/include")
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/src/kernel)
 add_subdirectory(${CMAKE_SOURCE_DIR}/src/arch/x86/interrupts)
+add_subdirectory(${CMAKE_SOURCE_DIR}/src/arch/x86/timer)
 add_subdirectory(${CMAKE_SOURCE_DIR}/src/drivers)
 
 add_custom_target(iso ALL
@@ -26,13 +27,14 @@ add_custom_target(iso ALL
 )
 
 find_program(QEMU qemu-system-x86_64)
+find_program(ALACRITTY alacritty)
 
 add_custom_target(run
     COMMAND ${QEMU}
         -cdrom ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.iso
         -no-reboot
     DEPENDS iso
-    COMMENT "Starting SynthCore QEMU"
+    COMMENT "Starting ${PROJECT_NAME} QEMU"
 )
 
 add_custom_target(run_debug
@@ -40,8 +42,11 @@ add_custom_target(run_debug
         -cdrom ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.iso
         -no-reboot
         -no-shutdown
-        -serial file:serial.log
-        -d int,cpu_reset
+        -machine q35
+        -gdb tcp::1234
+        -S
+        &
+    COMMAND sh -c "${ALACRITTY} -e gdb -ex 'set architecture i386:x86-64' -ex 'target remote localhost:1234' -ex 'layout asm' $<TARGET_FILE:kernel.elf>"
     DEPENDS iso
-    COMMENT "Starting SynthCore QEMU in DEBUG MODE"
+    COMMENT "Starting ${PROJECT_NAME} QEMU in DEBUG MODE"
 )

@@ -1,5 +1,5 @@
-#ifndef _ARCH_INT_IDT_SYNTHCORE_H
-#define _ARCH_INT_IDT_SYNTHCORE_H 1
+#ifndef _ARCH_INT_IDT_AXOCORE_H
+#define _ARCH_INT_IDT_AXOCORE_H 1
 
 #include <stdint.h>
 
@@ -25,4 +25,4 @@ void idt_set_gate(uint8_t vector, uint32_t handler, uint8_t selector, uint8_t fl
 
 void idt_init();
 
-#endif // _ARCH_INT_IDT_SYNTHCORE_H
+#endif // _ARCH_INT_IDT_AXOCORE_H

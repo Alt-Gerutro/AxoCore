@@ -65,6 +65,7 @@ void irq_unmask(uint8_t irqLine) {
         irqLine -= 8;
     }
 
-    value = inB(port) | ~(1 << irqLine);
+    value = inB(port); 
+    value &= ~(1 << irqLine);
     outB(port, value);
 }

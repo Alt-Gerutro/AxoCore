@@ -1,5 +1,5 @@
-#ifndef _UTILS_BYTEIO_SYNTHCORE_H
-#define _UTILS_BYTEIO_SYNTHCORE_H
+#ifndef _UTILS_BYTEIO_AXOCORE_H
+#define _UTILS_BYTEIO_AXOCORE_H
 
 #include <stdint.h>
 
@@ -29,17 +29,17 @@ static inline uint8_t inW(uint16_t port) {
     return v;
 }
 
-static inline void outW(uint16_t port, uint8_t byte) {
+static inline void outW(uint16_t port, uint16_t word) {
     __asm__ volatile("outw %0, %1"
         :
-        : "a"(byte),
+        : "a"(word),
         "Nd"(port)
     );
 }
 
 static inline uint32_t inDW(uint16_t port) {
     uint32_t v;
-    __asm__ volatile("inb %1, %0"
+    __asm__ volatile("indw %1, %0"
         : "=a"(v)
         : "Nd"(port)
     );
@@ -70,4 +70,4 @@ static inline void mem_copy(uint8_t* src, uint8_t* dest, uint32_t bytes) {
     }
 }
 
-#endif // _UTILS_BYTEIO_SYNTHCORE_H
+#endif // _UTILS_BYTEIO_AXOCORE_H

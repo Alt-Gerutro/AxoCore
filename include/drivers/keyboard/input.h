@@ -1,5 +1,5 @@
-#ifndef _DRIVERS_IO_INPUT_SYNTHCORE_H
-#define _DRIVERS_IO_INPUT_SYNTHCORE_H
+#ifndef _DRIVERS_IO_INPUT_AXOCORE_H
+#define _DRIVERS_IO_INPUT_AXOCORE_H
 
 #include <stdint.h>
 
@@ -9,6 +9,8 @@ typedef struct {
     uint16_t scancode;
     char *string;
 } keyPair;
+
+static uint8_t inputBuffer[4096];
 
 static keyPair keys[] = {
     {0x1, "esc"}, {0x3B, "F1"}, {0x3C, "F2"}, {0x3D, "F3"}, {0x3E, "F4"}, {0x3F, "F5"}, {0x40, "F6"}, {0x41, "F7"}, {0x42, "F8"}, {0x43, "F9"}, {0x44, "F10"}, {0x57, "F11"}, {0x58, "F12"},
@@ -32,4 +34,4 @@ void backspace();
 
 void keyboard_init();
 
-#endif // _DRIVERS_IO_INPUT_SYNTHCORE_H
+#endif // _DRIVERS_IO_INPUT_AXOCORE_H

@@ -1,5 +1,5 @@
-#ifndef _CONFIG_SYNTHCORE_H
-#define _CONFIG_SYNTHCORE_H
+#ifndef _CONFIG_AXOCORE_H
+#define _CONFIG_AXOCORE_H
 
 #define MULTIBOOT_MAGIC     0x1BADB002
 #define MULTIBOOT_FLAGS     0b00000011
@@ -16,4 +16,4 @@
 __attribute__((noreturn, used))
 void kpanic(char* msg, ...);
 
-#endif // _CONFIG_SYNTHCORE_H
+#endif // _CONFIG_AXOCORE_H

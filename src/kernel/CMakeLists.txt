@@ -6,4 +6,4 @@ set_target_properties(kernel.elf PROPERTIES
     LINK_FLAGS "${LINKER_FLAGS}"
 )
 
-target_link_libraries(kernel.elf drivers interrupts)
+target_link_libraries(kernel.elf drivers interrupts timer)

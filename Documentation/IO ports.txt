@@ -1,0 +1,8 @@
+I/O port    Device              Read/Write  Description
+0x40        PIT CH 0            R    W      Channel of PIT
+0x41        PIT CH 1            R    W      Channel of PIT
+0x42        PIT CH 2            R    W      Channel of PIT
+0x43        PIT Mode/Cmd             W      Mode/Command for PIT
+0x60        PS/2 keyboard       R    ?      Data of PS/2 keyboard
+0x3D4       VGA Control         ?    W      
+0x3D5       VGA Data            R    ?
